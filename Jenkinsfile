@@ -25,9 +25,8 @@ pipeline {
                     // Print the Docker version for debugging
                     sh "docker --version"
 
-                    // Run Docker-in-Docker with mounted Docker socket
-                    //sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v \$(pwd):/workspace -w /workspace docker:20.10 docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
-                    sh "docker build -t calculator ."
+                    // Use the Docker client configured through Docker Socket Binding
+                    docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
                 }
             }
         }
