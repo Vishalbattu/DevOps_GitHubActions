@@ -11,7 +11,7 @@ pipeline {
                               userRemoteConfigs: [[credentialsId: 'Vis', url: 'git@github.com:Vishalbattu/DevOps.git']]])
                     
                     // Build Docker image
-                    docker.build('vishalbattu/cicd:latest')
+                    docker.build("Calculator:Calculator", "-f .")
                 }
             }
         }
