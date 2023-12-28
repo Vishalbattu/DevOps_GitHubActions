@@ -7,16 +7,15 @@ pipeline {
         GIT_REPO_URL = 'https://github.com/Vishalbattu/DevOps.git'
     }
 
-    stage('Install Docker') {
-    steps {
+   
+    stages {
+        stage('Clone and Build') {
+            steps {
         script {
             sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
             sh 'sh get-docker.sh'
         }
     }
-}
-    stages {
-        stage('Clone and Build') {
             steps {
                 script {
                     // Print the current working directory
