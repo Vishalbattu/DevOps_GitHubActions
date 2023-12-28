@@ -18,6 +18,7 @@ pipeline {
 
                     // Build Docker image
                     docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
+                    sh "pwd"
                 }
             }
         }
