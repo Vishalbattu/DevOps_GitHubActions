@@ -11,18 +11,22 @@ pipeline {
         stage('Clone and Build') {
             steps {
                 script {
-
+                    // Print the current working directory
                     sh "pwd"
+
                     // Clone the public GitHub repository
                     checkout([$class: 'GitSCM', 
                               branches: [[name: 'master']],
                               userRemoteConfigs: [[url: GIT_REPO_URL]]])
 
-                    sh "docker build -t calculator ."
+                    // List the contents of the current directory
+                    sh "ls -la"
+
+                    // Print the Docker version for debugging
+                    sh "docker --version"
 
                     // Build Docker image
-                    //docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
-                    
+                    sh "docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
                 }
             }
         }
