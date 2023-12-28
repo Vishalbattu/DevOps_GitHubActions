@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_IMAGE_NAME = 'calculator'
+        DOCKER_IMAGE_TAG = 'latest'
+        GIT_REPO_URL = 'git@github.com:Vishalbattu/DevOps.git'
+    }
+
     stages {
         stage('Clone and Build') {
             steps {
@@ -8,32 +14,10 @@ pipeline {
                     // Clone the Git repository
                     checkout([$class: 'GitSCM', 
                               branches: [[name: 'master']],
-                              userRemoteConfigs: [[credentialsId: 'Vis', url: 'git@github.com:Vishalbattu/DevOps.git']]])
-                    
+                              userRemoteConfigs: [[url: GIT_REPO_URL]]])
+
                     // Build Docker image
-                    docker.build("Calculator:Calculator", "-f .")
-                }
-            }
-        }
-
-        stage('Push to Docker Registry') {
-            steps {
-                script {
-                    // Push Docker image to registry
-                    docker.withRegistry('https://hub.docker.com/', 'docker') {
-                        docker.image('vishalbattu/cicd:latest').push()
-                    }
-                }
-            }
-        }
-
-        stage('Deploy on Server') {
-            steps {
-                script {
-                    // SSH into the server and run Docker container
-                    sshagent(['ssh-key']) {
-                        sh 'ssh -o StrictHostKeyChecking=no ec2-user@13.40.223.103 "docker pull vishalbattu/cicd:latest && docker run -d -p 8080:5000 vishalbattu/cicd:latest"'
-                    }
+                    docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", "-f .")
                 }
             }
         }
