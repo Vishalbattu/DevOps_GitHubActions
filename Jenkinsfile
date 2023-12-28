@@ -18,10 +18,10 @@ pipeline {
                               branches: [[name: 'master']],
                               userRemoteConfigs: [[url: GIT_REPO_URL]]])
 
-                    sh "pwd"
+                    sh "docker build -t calculator ."
 
                     // Build Docker image
-                    docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
+                    //docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
                     
                 }
             }
