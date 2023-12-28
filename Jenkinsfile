@@ -6,8 +6,8 @@ pipeline {
             steps {
                 script {
                     // Clone the Git repository
-                    git@github.com:Vishalbattu/DevOps.git
-
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[credentialsId: 'Vi', url: 'git@github.com:Vishalbattu/DevOps.git']]])
+                    
                     // Build Docker image
                     docker.build('vishalbattu/cicd:latest')
                 }
