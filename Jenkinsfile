@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Clone the Git repository
-                    checkout scm
+                    git@github.com:Vishalbattu/DevOps.git
 
                     // Build Docker image
                     docker.build('vishalbattu/cicd:latest')
