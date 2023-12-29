@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'webcalculator'
         DOCKER_IMAGE_TAG = 'latest'
         DOCKER_HUB_REGISTRY = 'https://hub.docker.com/'
-        DOCKER_HUB_CREDENTIALS_ID = 'vishalbattu'
+        DOCKER_HUB_CREDENTIALS_ID = 'Docker'
         GIT_REPO_URL = 'https://github.com/Vishalbattu/DevOps.git'
     }
 
