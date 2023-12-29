@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'webcalculator'
         DOCKER_IMAGE_TAG = 'latest'
         DOCKER_HUB_REGISTRY = 'https://hub.docker.com/'
-        DOCKER_HUB_CREDENTIALS_ID = 'Docker'
+        DOCKER_HUB_CREDENTIALS_ID = 'vishalbattu'
         GIT_REPO_URL = 'https://github.com/Vishalbattu/DevOps.git'
     }
 
@@ -31,7 +31,7 @@ pipeline {
                     docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
 
                     // Push Docker image to Docker Hub
-                    docker.withRegistry(DOCKER_HUB_REGISTRY, DOCKER_HUB_CREDENTIALS_ID) {
+                    docker.withRegistry(DOCKER_HUB_REGISTRY, vishalbattu) {
                         docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
                     }
                 }
