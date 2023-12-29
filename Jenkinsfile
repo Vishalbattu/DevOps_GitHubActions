@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'webCalculator'
+        DOCKER_IMAGE_NAME = 'webcalculator'
         DOCKER_IMAGE_TAG = 'latest'
         DOCKER_HUB_REGISTRY = 'https://hub.docker.com/'
         DOCKER_HUB_CREDENTIALS_ID = 'vishalbattu'
