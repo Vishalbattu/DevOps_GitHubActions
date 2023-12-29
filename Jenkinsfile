@@ -2,15 +2,14 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'test'
+        DOCKER_IMAGE_NAME = 'webCalculator'
         DOCKER_IMAGE_TAG = 'latest'
-        GIT_REPO_URL = 'https://github.com/Vishalbattu/DevOps.git'
+        DOCKER_HUB_REGISTRY = 'https://hub.docker.com/'
+        DOCKER_HUB_CREDENTIALS_ID = 'vishalbattu'
     }
 
-   
     stages {
         stage('Clone and Build') {
-            
             steps {
                 script {
                     // Print the current working directory
@@ -29,6 +28,11 @@ pipeline {
 
                     // Use the Docker client configured through Docker Socket Binding
                     docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
+
+                    // Push Docker image to Docker Hub
+                    docker.withRegistry(DOCKER_HUB_REGISTRY, DOCKER_HUB_CREDENTIALS_ID) {
+                        docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
+                    }
                 }
             }
         }
