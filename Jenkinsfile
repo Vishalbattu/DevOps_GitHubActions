@@ -10,12 +10,7 @@ pipeline {
    
     stages {
         stage('Clone and Build') {
-            steps {
-        script {
-            sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
-            sh 'sh get-docker.sh'
-        }
-    }
+            
             steps {
                 script {
                     // Print the current working directory
