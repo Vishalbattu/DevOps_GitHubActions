@@ -38,5 +38,16 @@ pipeline {
                 }
             }
         }
-    }
+    
+    
+    stage('Deploy on Server') {
+            steps {
+                script {
+                    // SSH into the server and run Docker container
+                    sshagent(['ssh-key']) {
+                        sh 'ssh -o StrictHostKeyChecking=no ec2-user@13.40.223.103 "docker pull vishalbattu/webcalculator:latest && docker run -d -p 8080:5000 vishalbattu/cicd:latest"'
+                    }
+                }
+            }
+        }}
 }
