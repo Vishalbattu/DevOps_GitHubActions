@@ -30,10 +30,11 @@ pipeline {
                     // Use the Docker client configured through Docker Socket Binding
                     docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
 
-                    // Push Docker image to Docker Hub
-                    docker.withRegistry(DOCKER_HUB_REGISTRY, --username 'vishalbattu' --password 'Vishalbhattu@8') {
-                        docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
+                   // Push Docker image to Docker Hub
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                    docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
                     }
+
                 }
             }
         }
