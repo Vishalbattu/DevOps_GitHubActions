@@ -31,7 +31,7 @@ pipeline {
                     docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
 
                     // Push Docker image to Docker Hub
-                    docker.withRegistry(DOCKER_HUB_REGISTRY, --username vishalbattu --password Vishalbhattu@8) {
+                    docker.withRegistry(DOCKER_HUB_REGISTRY, --username 'vishalbattu' --password 'Vishalbhattu@8') {
                         docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
                     }
                 }
