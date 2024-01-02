@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'vishalbattu/webcalculator'
-        DOCKER_IMAGE_TAG = 'latest-$date'
+        DOCKER_IMAGE_TAG = 'latest'
         DOCKER_HUB_REGISTRY = 'https://registry.hub.docker.com/'
         DOCKER_HUB_CREDENTIALS_ID = 'vishal'
         GIT_REPO_URL = 'https://github.com/Vishalbattu/DevOps.git'
