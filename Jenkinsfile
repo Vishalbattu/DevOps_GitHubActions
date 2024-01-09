@@ -7,7 +7,7 @@ pipeline {
         DOCKER_HUB_REGISTRY = 'https://registry.hub.docker.com/'
         DOCKER_HUB_CREDENTIALS_ID = 'vishal'
         GIT_REPO_URL = 'https://github.com/Vishalbattu/DevOps.git'
-        DOCKER_NODE_NAME = 'my-node' // Name of the Jenkins node where you want to deploy
+        DOCKER_NODE_NAME = 'mynode' // Name of the Jenkins node where you want to deploy
     }
 
     stages {
@@ -37,7 +37,7 @@ pipeline {
 
                         // Run the Docker image on the node
                         docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
-                            .run("-d -p 8080:5000 vishalbattu/cicd:latest")
+                            .run("-d -p 8081:5000 vishalbattu/cicd:latest")
                     }
                 }
             }
