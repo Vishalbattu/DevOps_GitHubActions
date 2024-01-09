@@ -32,7 +32,7 @@ pipeline {
                 script {
                     // Deploy the Docker image on the specified node
                     node(DOCKER_NODE_NAME) {
-                        // Use credentials to pull Docker image
+                         Use credentials to pull Docker image
                         //withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS_ID, usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'dDOCKER_HUB_PASSWORD')]) 
                         {
                             // Pull the Docker image on the node
