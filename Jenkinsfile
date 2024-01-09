@@ -39,7 +39,7 @@ pipeline {
 
                             // Run the Docker image on the node
                             docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
-                                .run("-d -p 8081:5000 vishalbattu/cicd:latest")
+                                .run("-d -p 8081:5000 ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
                         }
                     }
                 }
