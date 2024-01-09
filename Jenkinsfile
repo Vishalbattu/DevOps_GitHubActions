@@ -20,7 +20,7 @@ pipeline {
                     docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
 
                     // Push Docker image to Docker Hub
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                    docker.withRegistry('', DOCKER_HUB_CREDENTIALS_ID) {
                         docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
                     }
                 }
@@ -33,11 +33,9 @@ pipeline {
                     // Deploy the Docker image on the specified node
                     node(DOCKER_NODE_NAME) {
                         // Use credentials to pull Docker image
-                        withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS_ID, usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+                        withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS_ID, usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'docker-hub-credentials')]) {
                             // Pull the Docker image on the node
-                            docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
-                                .withRegistry("${DOCKER_HUB_REGISTRY}", "${DOCKER_HUB_USERNAME}", "${DOCKER_HUB_PASSWORD}")
-                                .pull()
+                            docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").pull()
 
                             // Run the Docker image on the node
                             docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
