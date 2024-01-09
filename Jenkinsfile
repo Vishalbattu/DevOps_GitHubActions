@@ -35,7 +35,9 @@ pipeline {
                         // Use credentials to pull Docker image
                         withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CREDENTIALS_ID, usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
                             // Pull the Docker image on the node
-                            docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").withRegistry("${DOCKER_HUB_REGISTRY}", "${DOCKER_HUB_USERNAME}", "${DOCKER_HUB_PASSWORD}").pull()
+                            docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
+                                .withRegistry("${DOCKER_HUB_REGISTRY}", "${DOCKER_HUB_USERNAME}", "${DOCKER_HUB_PASSWORD}")
+                                .pull()
 
                             // Run the Docker image on the node
                             docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
