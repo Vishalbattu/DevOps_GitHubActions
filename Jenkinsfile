@@ -32,6 +32,8 @@ pipeline {
                 script {
                     // Deploy the Docker image on the specified node
                     node(DOCKER_NODE_NAME) {
+
+                        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials')
                         // Pull the Docker image on the node
                         docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").pull()
 
