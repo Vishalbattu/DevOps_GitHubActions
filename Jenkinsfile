@@ -15,7 +15,9 @@ pipeline {
             steps {
                 script {
                     // ... existing steps ...
-                    checkout scmGit(branches: [[name: '*/Devops']], extensions: [], userRemoteConfigs: [[credentialsId: 'GIT', url: 'https://github.com/Vishalbattu/DevOps.git']])
+                    checkout([$class: 'GitSCM', 
+                              branches: [[name: 'master']],
+                              userRemoteConfigs: [[url: GIT_REPO_URL]]])
                     // Use the Docker client configured through Docker Socket Binding
                     docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
 
