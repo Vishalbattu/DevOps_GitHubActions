@@ -15,8 +15,7 @@ pipeline {
             steps {
                 script {
                     // ... existing steps ...
-                    heckout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'GIT', url: 'https://github.com/Vishalbattu/DevOps.git']]
-
+                    checkout scmGit(branches: [[name: '*/Devops']], extensions: [], userRemoteConfigs: [[credentialsId: 'GIT', url: 'https://github.com/Vishalbattu/DevOps.git']])
                     // Use the Docker client configured through Docker Socket Binding
                     docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}", ".")
 
