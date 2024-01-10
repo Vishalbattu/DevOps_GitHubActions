@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'vishalbattu/webcalculator'
         DOCKER_IMAGE_TAG = 'latest'
         DOCKER_HUB_REGISTRY = 'https://registry.hub.docker.com/'
-        DOCKER_HUB_CREDENTIALS_ID = 'DOCKER_HUB_CREDENTIALS_ID'
+        DOCKER_HUB_CREDENTIALS_ID = 'vishal'
         GIT_REPO_URL = 'https://github.com/Vishalbattu/DevOps.git'
         DOCKER_NODE_NAME = 'Node-01' // Name of the Jenkins node where you want to deploy
     }
