@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag https://registry.hub.docker.com/webcalculator:$(date +%s)
+        run: docker build . --file Dockerfile --tag vishalbattu/webcalculator:$(date +%s)
 
       - name: Debug information
         run: |
