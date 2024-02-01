@@ -7,12 +7,18 @@ on:
     branches: [ "Devops" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag your-registry.example.com/my-image-name:$(date +%s)
+
+      - name: Log in to Docker Registry
+        run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin your-registry.example.com
+
+      - name: Push Docker image to Docker Registry
+        run: docker push your-registry.example.com/my-image-name:$(date +%s)
