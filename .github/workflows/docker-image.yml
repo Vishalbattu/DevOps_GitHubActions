@@ -31,3 +31,7 @@ jobs:
 
       - name: Push Docker image to Docker Registry
         run: docker push vishalbattu/webcalculator:${{ env.IMAGE_TAG }}
+
+      # Deployment steps
+      - name: Deploy to Target Server
+        run: ssh user@172.31.25.174 "docker pull vishalbattu/webcalculator:${{ env.IMAGE_TAG }}"
