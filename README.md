@@ -43,5 +43,5 @@ output: `x = 0.25`
 
 input: `2*x + 1 = 2*(1-x)`
 output: `x = 0.25`
-Thank you.
+Thank you..
 
