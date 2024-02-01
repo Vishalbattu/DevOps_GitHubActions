@@ -25,7 +25,5 @@ jobs:
       - name: Log in to Docker Registry
         run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin https://registry.hub.docker.com/
 
-
-
       - name: Push Docker image to Docker Registry
         run: docker push vishalbattu/webcalculator:$(date +%s)
