@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      IMAGE_TAG: $((date +%s))
+      IMAGE_TAG: $((date +\%s))
 
     steps:
       - name: Checkout code
