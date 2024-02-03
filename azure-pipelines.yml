@@ -1,8 +1,7 @@
 # Docker
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-pool:
-  name: Azure
+  
 
 trigger:
 - Devops
@@ -20,7 +19,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: ubuntu-latest
+      name: Azure
     steps:
     - task: Docker@2
       displayName: Build an image
